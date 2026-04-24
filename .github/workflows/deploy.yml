@@ -270,9 +270,9 @@ jobs:
       - name: Verify stack is running
         run: |
           docker ps -a
-          docker inspect hng14-stage2-devops-redis-1 \
+          docker inspect stage2-hng14-devops-redis-1 \
             --format='Redis: {{.State.Health.Status}}'
-          docker inspect hng14-stage2-devops-api-1 \
+          docker inspect stage2-hng14-devops-api-1 \
             --format='API: {{.State.Health.Status}}'
 
       - name: Rolling update api
