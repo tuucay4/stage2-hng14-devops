@@ -133,7 +133,7 @@ jobs:
 
       - name: Tag images with compose naming
         run: |
-          docker tag localhost:5000/api:latest stage2-hng14-devops:latest
+          docker tag localhost:5000/api:latest stage2-hng14-devops-api:latest
           docker tag localhost:5000/worker:latest stage2-hng14-devops-worker:latest
           docker tag localhost:5000/frontend:latest stage2-hng14-devops-frontend:latest
 
@@ -143,7 +143,7 @@ jobs:
             localhost:5000/api:latest \
             localhost:5000/worker:latest \
             localhost:5000/frontend:latest \
-            stage2-hng14-devops:latest \
+            stage2-hng14-devops-api:latest \
             stage2-hng14-devops-worker:latest \
             stage2-hng14-devops-frontend:latest \
             -o images.tar
