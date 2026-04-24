@@ -133,9 +133,9 @@ jobs:
 
       - name: Tag images with compose naming
         run: |
-          docker tag localhost:5000/api:latest hng14-stage2-devops-api:latest
-          docker tag localhost:5000/worker:latest hng14-stage2-devops-worker:latest
-          docker tag localhost:5000/frontend:latest hng14-stage2-devops-frontend:latest
+          docker tag localhost:5000/api:latest stage2-hng14-devops:latest
+          docker tag localhost:5000/worker:latest stage2-hng14-devops-worker:latest
+          docker tag localhost:5000/frontend:latest stage2-hng14-devops-frontend:latest
 
       - name: Save images as tar artifacts
         run: |
@@ -143,9 +143,9 @@ jobs:
             localhost:5000/api:latest \
             localhost:5000/worker:latest \
             localhost:5000/frontend:latest \
-            hng14-stage2-devops-api:latest \
-            hng14-stage2-devops-worker:latest \
-            hng14-stage2-devops-frontend:latest \
+            stage2-hng14-devops:latest \
+            stage2-hng14-devops-worker:latest \
+            stage2-hng14-devops-frontend:latest \
             -o images.tar
 
       - name: Upload image artifacts
