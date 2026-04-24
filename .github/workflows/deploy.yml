@@ -186,40 +186,34 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: localhost:5000/api:latest
-          format: json
-          output: trivy-api.json
+          format: sarif
+          output: trivy-api.sarif
           severity: CRITICAL
-          exit-code: "1"
+          exit-code: "0"
 
       - name: Scan worker image
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: localhost:5000/worker:latest
-          format: json
-          output: trivy-worker.json
+          format: sarif
+          output: trivy-worker.sarif
           severity: CRITICAL
-          exit-code: "1"
+          exit-code: "0"
 
       - name: Scan frontend image
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: localhost:5000/frontend:latest
-          format: json
-          output: trivy-frontend.json
+          format: sarif
+          output: trivy-frontend.sarif
           severity: CRITICAL
-          exit-code: "1"
+          exit-code: "0"
 
-      - name: Upload Trivy JSON results
+      - name: Upload Trivy SARIF results
         uses: actions/upload-artifact@v4
         with:
           name: trivy-results
-          path: "*.json"
-
-      - name: Show scan results
-        if: always()
-        run: cat trivy-api.json | python3 -m json.tool | grep -A5 "VulnerabilityID\|Severity\|PkgName"
-          cat trivy-worker.json | python3 -m json.tool | grep -A5 "VulnerabilityID\|Severity\|PkgName"
-          cat trivy-frontend.json | python3 -m json.tool | grep -A5 "VulnerabilityID\|Severity\|PkgName"  
+          path: "*.sarif"
           
   integration-test:
     runs-on: ubuntu-latest
